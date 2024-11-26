@@ -18,6 +18,12 @@ jobs:
           echo "${{ secrets.SERVER_KEY }}" > ssh_key
           chmod 600 ssh_key
           ssh -o StrictHostKeyChecking=no -i ssh_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo SSH connection successful"
+      - name: Debug SSH Connection
+        run: |
+         echo "${{ secrets.SERVER_KEY }}" > ssh_key
+         chmod 600 ssh_key
+         ssh -v -o StrictHostKeyChecking=no -i ssh_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}
+
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.3
