@@ -25,7 +25,7 @@ const patientRoutes = require("./routes/patientRoutes.js");
 const medicineRoutes = require("./routes/medicineRoutes.js");
 const appointmentRoutes = require("./routes/appointmentRoutes.js");
 
-app.use("/test", (req, res) => res.send("<h1>This is a test API</h1>"));
+app.use("/test", (req, res) => res.send("<h1>This is a test API cicd trial commit 2</h1>"));
 app.use("/api/doctors", doctorRouter);
 app.use("/api/receptionists", receptionistRoutes);
 app.use("/api/patients", patientRoutes);
