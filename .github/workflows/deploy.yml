@@ -1,29 +1,3 @@
-name: Deploy to EC2
-
-on:
-  push:
-    branches:
-      - master  # Trigger the workflow when code is pushed to the main branch
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      # Step 1: Check out the code from the repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # Step 2: Deploy to EC2 instance via SSH
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v0.1.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}         # Public IP or DNS of your EC2 instance
-          username: ${{ secrets.SERVER_USER }}     # SSH username (e.g., ec2-user, ubuntu)
-          key: ${{ secrets.SERVER_KEY }}           # Private SSH key for SSH authentication
-          port: 22                                 # SSH port (default is 22)
-          script: |
-            cd /cicdhmstrial/cicdhmstrial       # Navigate to the app directory
-            git pull origin master                   # Pull the latest changes
-            npm install                            # Install any new dependencies
-            pm2 restart cicdtrialhms1                  # Restart the application with PM2
+- name: Test SSH Connection
+  run: |
+    ssh -i ~/.ssh/id_rsa ec2-user@${{ secrets.SERVER_HOST }} "echo SSH connection successful"
